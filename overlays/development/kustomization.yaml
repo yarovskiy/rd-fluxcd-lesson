@@ -7,3 +7,13 @@ resources:
   - dragonfly.yaml
 patches:
   - path: replicas.yaml
+  - target:
+      kind: Ingress
+      name: course-app
+    patch: |
+      - op: replace
+        path: /spec/rules/0/host
+        value: course-app.dev.local
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: course-app.dev.local
